@@ -15,9 +15,9 @@ class App extends Component {
     };
   }
 
-  criarNota(titulo, texto) {
-    console.log(`Uma nova nota foi criada. titulo: ${titulo} texto:${texto}`);
-    const novaNota = { titulo, texto };
+  criarNota(titulo, texto, categoria) {
+    console.log(`Uma nova nota foi criada. titulo: ${titulo} texto:${texto} categoria:${categoria}`);
+    const novaNota = { titulo, texto, categoria};
     const novoEstado = {
       notas: [...this.state.notas, novaNota],
     };
@@ -40,7 +40,10 @@ class App extends Component {
   render() {
     return (
       <section className="conteudo">
-        <FormularioCadastro criarNota={this.criarNota.bind(this)} />
+        <FormularioCadastro
+          criarNota={this.criarNota.bind(this)}
+          categorias={this.state.categorias}
+        />
         <main className="conteudo-principal">
           <ListaDeCategorias
             criarCategoria={this.criarCategoria.bind(this)}
