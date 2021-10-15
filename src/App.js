@@ -4,18 +4,23 @@ import FormularioCadastro from "./components/FormularioCadastro";
 import "./assets/App.css";
 import "./assets/index.css";
 import ListaDeCategorias from "./components/ListaDeCategorias/ListaDeCategorias";
+import Categorias from "./data/categorias";
+import ArrayNotas from "./data/arrayNotas";
+
 
 class App extends Component {
   constructor() {
     super();
+    this.categorias = new Categorias();
+    this.arrayNotas = new ArrayNotas();
 
-    this.state = {
-      notas: [],
+    /*this.state = {
+      notas: []
       categorias: [],
-    };
+    };*/
   }
 
-  criarNota(titulo, texto, categoria) {
+  /*criarNota(titulo, texto, categoria) {
     console.log(`Uma nova nota foi criada. titulo: ${titulo} texto:${texto} categoria:${categoria}`);
     const novaNota = { titulo, texto, categoria};
     const novoEstado = {
@@ -35,23 +40,23 @@ class App extends Component {
       categorias: [...this.state.categorias, novaCategoria],
     };
     this.setState(novoEstado);
-  }
+  }*/
 
   render() {
     return (
       <section className="conteudo">
         <FormularioCadastro
-          criarNota={this.criarNota.bind(this)}
-          categorias={this.state.categorias}
+          criarNota={this.arrayNotas.criarNota.bind(this.arrayNotas)}
+          categorias={this.categorias.listaCategorias}
         />
         <main className="conteudo-principal">
           <ListaDeCategorias
-            criarCategoria={this.criarCategoria.bind(this)}
-            categorias={this.state.categorias}
+            criarCategoria={this.categorias.criarCategoria.bind(this.categorias)}
+            categorias={this.categorias.listaCategorias}
           />
           <ListaDeNotas
-            apagarNota={this.apagarNota.bind(this)}
-            notas={this.state.notas}
+            apagarNota={this.arrayNotas.apagarNota}
+            notas={this.arrayNotas.listaNotas}
           />
         </main>
       </section>
