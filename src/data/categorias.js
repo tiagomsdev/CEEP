@@ -5,9 +5,8 @@ export default class Categorias{
     }
     
     criarCategoria(novaCategoria){
-        console.log(`estou na criarCategoria valor:${novaCategoria}`);
         this.listaCategorias.push(novaCategoria);
-        console.log(this.listaCategorias);
+        this.notificar();
     }
 
     inscrever(func){
